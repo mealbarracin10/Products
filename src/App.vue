@@ -16,6 +16,9 @@ export default {
 </script>
 
 <style>
-#app {
+img.logo {
+  width: 50px;
+  float: left;
+  margin-right: 15px;
 }
 </style>
