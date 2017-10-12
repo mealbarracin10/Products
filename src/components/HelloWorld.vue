@@ -39,7 +39,7 @@
         </span>
       </td>
       <td>
-        <a class="btn btn-danger btn-xs" v-link="{name: 'product-delete', params: {product_id: product.id}}">X</a>
+		<a class="btn btn-danger btn-xs" href="#" v-on:click="deleteproduct(product.id)">X</a>
       </td>
     </tr>
     </tbody>
@@ -61,7 +61,15 @@ export default {
   {id: 6, name: 'Chocolate', description: 'Descripcion bla bla bal.', price: 200, quantity: 50}
 ]
     }
-  }
+  }, 
+  methods: {
+        deleteproduct(product_id){
+		
+			let i = this.products.map(item => item.id).indexOf(product_id)
+			this.products.splice(i, 1)
+			router.go('/');
+        }	
+    }
 }
 </script>
 
