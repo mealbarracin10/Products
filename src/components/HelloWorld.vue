@@ -6,6 +6,33 @@
       <h1>INVENTARIO APP</h1>
     </div>
   </header>
+  <div>
+    <h3>Add new product</h3>
+	<hr style="color: red"> 
+    <form >
+      <div class="form-group">
+		<div class="row">
+			<div class="col-lg-6 col-sm-8 col-xs-3">
+				<input class="form-control" id="add-name"  placeholder="Nombre" required/>
+			</div>
+			<div class="col-lg-1 col-sm-2 col-xs-1">
+			<input class="form-control" id="add-price" placeholder="Precio" />
+			</div>
+			<div class="col-lg-1 col-sm-2 col-xs-1">
+			<input class="form-control" id="add-price" placeholder="Cantidad"/>
+			</div>
+		</div>	
+      </div>
+      <div class="form-group">
+        <textarea class="form-control" id="add-description" rows="4" placeholder="Descripcion" ></textarea>
+      </div>
+      <div class="form-group">
+        <label for="add-price">Price, <span class="glyphicon glyphicon-euro"></span></label>
+        
+      </div>
+      <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+  </div>
   <div class="filters row">
     <div class="form-group col-sm-3">
       <label for="search-element">LISTADO DE PRODUCTOS</label>
