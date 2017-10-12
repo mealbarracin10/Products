@@ -9,7 +9,7 @@
   <div class="filters row">
     <div class="form-group col-sm-3">
       <label for="search-element">LISTADO DE PRODUCTOS</label>
-      <input v-model="searchKey" class="form-control" id="search-element" requred/>
+      <input v-model="search" class="form-control" id="search-element" requred/>
     </div>
   </div>
 
@@ -24,7 +24,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr v-for="product in products">
+    <tr v-for="product in filteredProducts">
       <td>
         <a v-link="{name: 'product', params: {product_id: product.id}}">{{ product.name }}</a>
       </td>
@@ -52,6 +52,7 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
+	 search: '',
      products : [
   {id: 1, name: 'Leche', description: 'Parrafo muy largo con la descripcion del producto que se va a extender.', price: 2500, quantity: 100},
   {id: 2, name: 'Huevos', description: 'Descripcion bla bla bal', price: 200, quantity: 150},
@@ -69,7 +70,14 @@ export default {
 			this.products.splice(i, 1)
 			router.go('/');
         }	
+    },
+  computed: {
+    filteredProducts() {
+      return this.products.filter(item => {
+         return item.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1
+      })
     }
+  }
 }
 </script>
 
