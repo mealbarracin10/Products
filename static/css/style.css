@@ -1,0 +1,25 @@
+.logo {
+  width: 50px;
+  float: left;
+  margin-right: 15px;
+}
+.no-border {
+    border: 0;
+    box-shadow: none; /* You may want to include this as bootstrap applies these styles too */
+}
+hr{
+  background-color: #4baef9;
+  border-top: 2px solid #4baef9;
+}
+
+.addproducts{
+background-color: #4baef9
+}
+
+.nuevoProducto {
+  color: #4baef9;
+  margin-top: 60px;
+}
+.nameProduct{
+  color: #4baef9
+}
