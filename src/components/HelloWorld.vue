@@ -49,7 +49,7 @@
 				<tbody>
 					<tr v-for="product in filteredProducts">
 						<td class="nameProduct">
-						<a>{{ product.name }}</a>
+						<a  href="#" v-on:click="viewdetails(product.id)">{{ product.name }}</a>
 						</td>
 						<td>{{ product.description }}</td>
 						<td>{{ product.price }}
@@ -69,20 +69,20 @@
 			<div class="form-group col-lg-3 col-sm-3 col-xs-3">
 				<p class = "detalleProducto">DETALLE</p>
 				<hr class="lineTitle"> 
-				<p class = "txtdetalleProduct">detalle</p>
+				<p class = "txtdetalleProduct">{{producto.name}}</p>
 				<hr class="lineproduct">
-				<p>precio</p>
+				<p class="price">${{producto.price}}</p>
 
 			<div class="row">
 			<div class="form-group col-lg-6 col-sm-6 col-xs-6">
-				<span>Lorem Ipsum es simplemente el texto de relleno de las imprentas </span>	
+				<span>{{producto.description}}</span>	
 			</div>
 			
 			<div class="form-group col-lg-1 col-sm-1 col-xs-1">
 				<div class="vertical-line" style="height: 200px;"></div>
 			</div>
 			<div class="form-group col-lg-4 col-sm-4 col-xs-4">
-			<div class="circle-text">100</div>
+			<div class="circle-text">{{producto.quantity}}</div>
 			</div>	
 			</div>
 			</div>
@@ -94,6 +94,7 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
+   producto : {id: 0, name: '', description: '', price: 0, quantity: 0},
 	 search: '',
      products : [
   {id: 1, name: 'Leche', description: 'Parrafo muy largo con la descripcion del producto que se va a extender.', price: 2500, quantity: 100},
@@ -114,7 +115,7 @@ export default {
         createProduct(e)
           {
             this.products.push({
-            id: Math.random().toString().split('.')[1],
+            id: this.products.length +1,
             name: this.products.name,
             description: this.products.description,
             price: this.products.price,
@@ -125,6 +126,14 @@ export default {
           this.products.price = ""
           this.products.quantity = ""
           e.preventDefault();
+          },
+          viewdetails(product_id)
+          {
+            this.producto.name = this.products[product_id-1].name
+						this.producto.description = this.products[product_id-1].description
+						this.producto.id = this.products[product_id-1].id
+						this.producto.price = this.products[product_id-1].price
+						this.producto.quantity = this.products[product_id-1].quantity
           }
     },
   computed: {

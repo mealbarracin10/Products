@@ -41,6 +41,7 @@ background-color: #4baef9;
 }
 .txtdetalleProduct{
 	margin-top: 5px;
+  font-size: 150%;
 }
 
 
@@ -62,4 +63,13 @@ border-radius: 50%;
 background: #4baef9;
 color: #fff;
 font-size: 180%;
+margin-bottom: -100px; 
+}
+
+.price{
+    padding: 10px 40px 10px ; 
+    background: gray;
+    width: 120px;
+    border-radius: 15px;
+
 }
