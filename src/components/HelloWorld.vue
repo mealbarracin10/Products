@@ -1,89 +1,94 @@
 <template id="product-list">
-<div class="container">
-  <div>  
-    <div class = "row">
-    <div class="col-lg-8 col-sm-8 col-xs-5">
-    <p class = "nuevoProducto">NUEVO PRODUCTO</p>
-	<hr> 
-  </div>
-  </div>
-    <form v-on:submit.prevent="createProduct">
-      <div class="form-group">
-		    <div class="row">
-			    <div class="col-lg-4 col-sm-4 col-xs-3">
-				  <input v-model="products.name" class="form-control" id="add-name"  placeholder="Nombre" required/>
+	<div class="container"> 
+		<div class = "row">
+			<div class="col-lg-8 col-sm-8 col-xs-5">
+				<p class = "nuevoProducto">NUEVO PRODUCTO</p>
+				<hr class="lineTitle"> 
 			</div>
-			<div class="col-lg-2 col-sm-2 col-xs-2">
-			<input v-model="products.price" class="form-control" id="add-price" placeholder="Precio" />
+		</div>
+		<form v-on:submit.prevent="createProduct">
+			<div class="form-group">
+				<div class="row">
+					<div class="col-lg-4 col-sm-4 col-xs-3">
+						<input v-model="products.name" class="form-control" id="add-name"  placeholder="Nombre" required/>
+					</div>
+					<div class="col-lg-2 col-sm-2 col-xs-2">
+						<input v-model="products.price" class="form-control" id="add-price" placeholder="Precio" />
+					</div>
+					<div class="col-lg-2 col-sm-2 col-xs-2">
+						<input v-model="products.quantity" class="form-control" id="add-price" placeholder="Cantidad"/>
+					</div>
+				</div>	
 			</div>
-			<div class="col-lg-2 col-sm-2 col-xs-2">
-			<input v-model="products.quantity" class="form-control" id="add-price" placeholder="Cantidad"/>
+			<div class="form-group">
+					<div class="row">
+						<div class="col-lg-6 col-sm-6 col-xs-4">
+							<textarea v-model="products.description" class="form-control" id="add-description" rows="4" placeholder="Descripcion" />
+						</div>
+						<div class="col-lg-2 col-sm-2 col-xs-1">
+							<button type="submit" class="btn btn-primary addproducts">Agregar</button>
+						</div>
+					</div>
+			</div>  							 	 	 
+		</form>
+		<div class="row">
+			<div class="form-group col-lg-8 col-sm-8 col-xs-5">
+				<p class = "nuevoProducto">LISTADO DE PRODUCTOS</p>
+				<hr class="lineTitle"> 
+					<input v-model="search" class="form-control no-border glyphicon glyphicon-search" id="search-element"  placeholder="Filtrar" required/>   
+					<table class="table table-striped">
+					<thead>
+					<tr>
+					<th>Nombre</th>
+					<th>Descripcion</th>
+					<th>Precio</th>
+					<th>Cant.</th>
+					<th>Borrar</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="product in filteredProducts">
+						<td class="nameProduct">
+						<a>{{ product.name }}</a>
+						</td>
+						<td>{{ product.description }}</td>
+						<td>{{ product.price }}
+						<span class="glyphicon glyphicon-euro" aria-hidden="true"/>
+						<td>{{ product.quantity }}
+						<span  aria-hidden="true">
+						</span>
+						</td>
+						<td>
+						<a class="btn btn-danger btn-xs" href="#" v-on:click="deleteproduct(product.id)">X</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+			
+			<div class="form-group col-lg-3 col-sm-3 col-xs-3">
+				<p class = "detalleProducto">DETALLE</p>
+				<hr class="lineTitle"> 
+				<p class = "txtdetalleProduct">detalle</p>
+				<hr class="lineproduct">
+				<p>precio</p>
+
+			<div class="row">
+			<div class="form-group col-lg-6 col-sm-6 col-xs-6">
+				<span>Lorem Ipsum es simplemente el texto de relleno de las imprentas </span>	
+			</div>
+			
+			<div class="form-group col-lg-1 col-sm-1 col-xs-1">
+				<div class="vertical-line" style="height: 200px;"></div>
+			</div>
+			<div class="form-group col-lg-4 col-sm-4 col-xs-4">
+			<div class="circle-text">100</div>
+			</div>	
+			</div>
 			</div>
 		</div>	
-      </div>
-      <div class="form-group">
-      <div class="row">
-      <div class="col-lg-6 col-sm-6 col-xs-4">
-        <textarea v-model="products.description" class="form-control" id="add-description" rows="4" placeholder="Descripcion" ></textarea>
-        </div>
-        <div class="col-lg-2 col-sm-2 col-xs-1">
-        <button type="submit" class="btn btn-primary addproducts">Agregar</button>
-        </div>
-        </div>
-      </div>  
-    </form>
-  </div>
-  <div class="row">
-    <div class="form-group col-lg-8 col-sm-8 col-xs-5">
-      <p class = "nuevoProducto">LISTADO DE PRODUCTOS</p>
-      	<hr> 
-
-       <div class="right-inner-addon ">
-          <input v-model="search" class="form-control no-border glyphicon glyphicon-search" id="search-element"  placeholder="Filtrar" requred/>
-      </div>    
-    </div>
-  </div>
-
-  <div class = "container">
-  <div class="row">
-      <div class="col-lg-7 col-sm-7 col-xs-5">
-<table class="table table-striped">
-    <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Descripcion</th>
-      <th>Precio</th>
-      <th>Cant.</th>
-      <th>Borrar</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr v-for="product in filteredProducts">
-      <td class="nameProduct">
-        <a>{{ product.name }}</a>
-      </td>
-      <td>{{ product.description }}</td>
-      <td>
-        {{ product.price }}
-        <span class="glyphicon glyphicon-euro" aria-hidden="true"></span>
-          <td>
-        {{ product.quantity }}
-        <span  aria-hidden="true">
-          
-        </span>
-      </td>
-      <td>
-		<a class="btn btn-danger btn-xs" href="#" v-on:click="deleteproduct(product.id)">X</a>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-  </div>
-  </div>
-  </div>
-  </div>
+	</div>
 </template>
-
 <script>
 export default {
   name: 'HelloWorld',
@@ -130,7 +135,7 @@ export default {
     }
   }
 }
-</script>
+		</script>
 
-<style>
-</style>
+		<style>
+		</style>
