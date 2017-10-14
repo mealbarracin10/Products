@@ -69,12 +69,12 @@
 			<div class="form-group col-lg-3 col-sm-3 col-xs-3">
 				<p class = "detalleProducto">DETALLE</p>
 				<hr class="lineTitle"> 
+
+			<div class="row detailPrice">
+			<div class="form-group col-lg-6 col-sm-6 col-xs-6">
 				<p class = "txtdetalleProduct">{{producto.name}}</p>
 				<hr class="lineproduct">
 				<p class="price">${{producto.price}}</p>
-
-			<div class="row">
-			<div class="form-group col-lg-6 col-sm-6 col-xs-6">
 				<span>{{producto.description}}</span>	
 			</div>
 			
@@ -83,6 +83,10 @@
 			</div>
 			<div class="form-group col-lg-4 col-sm-4 col-xs-4">
 			<div class="circle-text">{{producto.quantity}}</div>
+			<div class="in-creasedquantity">
+			<a  class='qtyminus' value='-'  href="#" v-on:click="decrease(producto.id)">-</a>
+    	<a class='qtyplus' value='+'   href="#" v-on:click="increased(producto.id)"  >+</a>
+			</div>
 			</div>	
 			</div>
 			</div>
@@ -110,7 +114,7 @@ export default {
         deleteproduct(product_id){
 			let i = this.products.map(item => item.id).indexOf(product_id)
 			this.products.splice(i, 1)
-			router.go('/')
+			localStorage.setItem("products", JSON.stringify(this.products))
         },
         createProduct(e)
           {
@@ -120,7 +124,8 @@ export default {
             description: this.products.description,
             price: this.products.price,
             quantity: this.products.quantity
-          });
+          })
+					localStorage.setItem("products", JSON.stringify(this.products))
           this.products.name = ""
           this.products.description = ""
           this.products.price = ""
@@ -134,10 +139,24 @@ export default {
 						this.producto.id = this.products[product_id-1].id
 						this.producto.price = this.products[product_id-1].price
 						this.producto.quantity = this.products[product_id-1].quantity
-          }
+          },
+					increased(product_id){
+						this.products[product_id-1].quantity++
+						this.producto.quantity++
+
+					},
+
+					decrease(product_id){
+						this.products[product_id-1].quantity--
+						this.producto.quantity--
+					}
     },
   computed: {
     filteredProducts() {
+		if (localStorage["products"]) {
+			this.products = JSON.parse(localStorage.getItem("products"))
+			console.log(JSON.parse(localStorage.getItem("products")))
+}			
       return this.products.filter(item => {
          return item.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1
       })

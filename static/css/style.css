@@ -50,7 +50,7 @@ div.vertical-line{
       background-color: black; 
       height: 100%;
       float: left;
-	  margin-top: -55px;
+	    margin-top: -40px;
     }
 	
 .circle-text {
@@ -73,3 +73,24 @@ margin-bottom: -100px;
     border-radius: 15px;
 
 }
+
+.detailPrice{
+  margin-top: 40px;
+}
+.qtyplus {
+  background-color: gray;
+  font-size: 30px;
+  color: #fff;
+   }
+
+.qtyminus { 
+  background-color: #4baef9;
+  font-size: 30px;
+  color: #fff;
+  }
+
+  .in-creasedquantity{
+    text-align: 'center';
+    margin: 0 auto; 
+    display:block;
+  }
