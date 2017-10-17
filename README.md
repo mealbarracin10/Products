@@ -23,4 +23,4 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 Functionality
 
-<a href="https://imgur.com/vdMy11k"><img src="https://i.imgur.com/vdMy11k.gif" title="source: imgur.com" /></a>
+<a href="https://youtu.be/bM4-QVgg5FY"/>Functionality</a>
